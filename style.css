@@ -27,4 +27,40 @@ main {
   padding: 15px;
   box-shadow: 0 5px 15px rgba(0,0,0,.2);
 }
- 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+th {
+  background: #2563eb;
+  color: white;
+}
+td {
+  height: 70px;
+  background: white;
+}
+.add-class-form{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:20px 0;
+}
+.add-class-form input,
+.add-class-form select,
+.add-class-form button{
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+.add-class-form button{
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+}
