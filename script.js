@@ -14,26 +14,64 @@ document.getElementById("openModal").onclick = () => {
 document.getElementById("closeModal").onclick = () => {
     modal.style.display = "none";
 };
-function renderDays() {
-    timetableGrid.innerHTML = "";
-    days.forEach(day => {
-        timetableGrid.innerHTML += `
-            <div class="day-card" id="${day}">
-                <h3>${day}</h3>
+function renderDays(){
+    const daysGrid =document.getElementById("daysGrid");
+    const timeColumn=document.getElementById("timeColumn");
+    daysGrid.innerHTML="";
+    timeColumn.innerHTML="";
+    for(let hour=8; hour<=17;hour++){
+        timeColumn.innerHTML+= `
+            <div class="time-slot">
+                ${hour}:00
             </div>
+        `;
+    }
+    days.forEach(day=>{
+        daysGrid.innerHTML += `
+            <div class="day-column">
+                <div class="day-header">
+                    ${day}
+                </div>
+                <div
+                    class="day-body"
+                    id="${day}">
+                </div>
+          </div>
         `;
     });
     renderClasses();
 }
-function renderClasses() {
-    classes.forEach(currentClass => {
+function timeToMinutes(time){
+    const [hour, minute] = time.split(":").map(Number);
+    return hour * 60 + minute;
+}
+function calculateTop(start){
+    const startOfSchedule = 8 * 60;
+    return ((timeToMinutes(start)-startOfSchedule) / 60) * 80;
+}
+function calculateHeight(start,end){
+    return ((timeToMinutes(end) - timeToMinutes(start)) / 60) * 80;
+}
+function renderClasses(){
+    classes.forEach(currentClass=>{
         const dayColumn = document.getElementById(currentClass.day);
+        const top = calculateTop(currentClass.start);
+        const height = calculateHeight(
+            currentClass.start,
+            currentClass.end
+        );
         dayColumn.innerHTML += `
-            <div class="class-card">
-                <h4>${currentClass.course}</h4>
-                <p>${currentClass.start} - ${currentClass.end}</p>
-                <p>${currentClass.room}</p>
-            </div>
+        <div
+            class="class-card"
+            style="
+                top:${top}px;
+                height:${height}px;
+            "
+        >
+            <h4>${currentClass.course}</h4>
+            <p>${currentClass.start} - ${currentClass.end}</p>
+            <p>${currentClass.room}</p>
+        </div>
         `;
     });
 }

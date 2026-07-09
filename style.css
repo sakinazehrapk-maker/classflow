@@ -64,60 +64,66 @@ button:hover {
 .widget hr {
     margin: 15px 0;
 }
-#timetableGrid{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:20px;
+.schedule{
+    display:flex;
+    gap:15px;
     margin-top:25px;
 }
-.day-card{
+.time-column{
+    width:80px;
+}
+.time-slot{
+    height:80px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    font-weight:bold;
+    color:#666;
+}
+.days-grid{
+    flex:1;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:15px;
+}
+.day-column{
     background:white;
     border:2px solid #e5e7eb;
     border-radius:12px;
-    padding:15px;
-    min-height:350px;
+    overflow:hidden;
 }
-.day-card h3{
-    text-align:center;
-    margin-bottom:15px;
-    color:#2563eb;
-}
-.modal{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.5);
-    justify-content:center;
-    align-items:center;
-}
-.modal-content{
-    background:white;
-    padding:25px;
-    width:350px;
-    border-radius:15px;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-.modal-content input,
-.modal-content select{
-    padding:10px;
-}
-.buttons{
-    display:flex;
-    gap:10px;
-}
-.class-card{
+.day-header{
     background:#2563eb;
     color:white;
+    text-align:center;
     padding:12px;
+    font-weight:bold;
+}
+.day-body{
+    position:relative;
+    height:800px;
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        white 0px,
+        white 79px,
+        #ececec 80px
+    );
+}
+.class-card{
+    position:absolute;
+    left:8px;
+    right:8px;
+    background:#2563eb;
+    color:white;
     border-radius:10px;
-    margin-top:12px;
+    padding:10px;
+    overflow:hidden;
+    box-shadow:0 4px 10px rgba(0,0,0,.15);
 }
 .class-card h4{
-    margin-bottom:8px;
+    margin-bottom:6px;
 }
 .class-card p{
-    font-size:14px;
-    margin:3px 0;
+    font-size:13px;
 }
