@@ -61,19 +61,27 @@ function renderClasses(){
             currentClass.end
         );
         dayColumn.innerHTML += `
-        <div
-            class="class-card"
-            style="
-                top:${top}px;
-                height:${height}px;
-            "
-        >
-            <h4>${currentClass.course}</h4>
-            <p>${currentClass.start} - ${currentClass.end}</p>
-            <p>${currentClass.room}</p>
-        </div>
-        `;
+<div
+    class="class-card"
+    style="
+        top:${top}px;
+        height:${height}px;
+    "
+>
+    <button class="delete-btn" onclick="deleteClass(${classes.indexOf(currentClass)})">
+        ✕
+    </button>
+    <h4>${currentClass.course}</h4>
+    <p>${currentClass.start} - ${currentClass.end}</p>
+    <p>${currentClass.room}</p>
+</div>
+`;
     });
+}
+function deleteClass(index){
+    classes.splice(index, 1);
+    localStorage.setItem("classes", JSON.stringify(classes));
+    renderDays();
 }
 document.getElementById("saveClass").onclick = () => {
     const course = document.getElementById("course").value;
@@ -100,4 +108,68 @@ document.getElementById("saveClass").onclick = () => {
     document.getElementById("room").value="";
     renderDays();
 };
+function updateWidget(){
+    const now=new Date();
+    const currentDay = now.toLocaleDateString(
+        "en-US",
+        { weekday: "long" }
+    );
+    const currentMinutes =
+        now.getHours()*60 +
+        now.getMinutes();
+    let activeClass=null;
+    let nextClass=null;
+    classes.forEach(c=>{
+        if(c.day!==currentDay) return;
+        const start=timeToMinutes(c.start);
+        const end=timeToMinutes(c.end);
+        if(currentMinutes>=start && currentMinutes<end){
+            activeClass=c;
+        }
+        if(currentMinutes<start){
+            if(
+                !nextClass ||
+                start<timeToMinutes(nextClass.start)
+            ){
+                nextClass=c;
+            }
+        }
+    });
+    if(activeClass){
+        document.getElementById("currentCourse").textContent=
+        activeClass.course;
+        document.getElementById("currentTime").textContent=
+        `${activeClass.start} - ${activeClass.end}`;
+        const total=
+            timeToMinutes(activeClass.end) -
+            timeToMinutes(activeClass.start);
+        const passed=
+            currentMinutes -
+            timeToMinutes(activeClass.start);
+        const percent=
+            (passed/total)*100;
+        document.getElementById("progress").style.width=
+        percent+"%";
+        const remaining=
+            total-passed;
+        document.getElementById("timeRemaining").textContent=
+        `Time Left: ${remaining} min`;
+    }else{
+        document.getElementById("currentCourse").textContent=
+        "No Class";
+        document.getElementById("currentTime").textContent=
+        "--";
+        document.getElementById("progress").style.width=
+        "0%";
+        document.getElementById("timeRemaining").textContent=
+        "Time Left: --";
+    }
+    document.getElementById("nextClass").textContent=
+    nextClass ?
+    `${nextClass.course} (${nextClass.start})`
+    :
+    "No more classes today";
+}
 renderDays();
+updateWidget();
+setInterval(updateWidget,60000);
