@@ -67,6 +67,7 @@ function renderClasses(){
     style="
         top:${top}px;
         height:${height}px;
+        background:${currentClass.color};
     "
 >
     <button class="delete-btn" onclick="deleteClass(${classes.indexOf(currentClass)})">
@@ -95,19 +96,23 @@ document.getElementById("saveClass").onclick = () => {
         alert("Please fill all fields.");
         return;
     }
+    const color=document.getElementById("color").value;
     classes.push({
-        course,
-        day,
-        start,
-        end,
-        room
-    });
+    id:Date.now(),
+    course,
+    day,
+    start,
+    end,
+    room,
+    color
+});
     localStorage.setItem("classes", JSON.stringify(classes));
     modal.style.display = "none";
     document.getElementById("course").value ="";
     document.getElementById("start").value ="";
     document.getElementById("end").value ="";
     document.getElementById("room").value="";
+    document.getElementById("color").value="#2563eb";
     renderDays();
     renderTodaySchedule();
 };
@@ -141,6 +146,8 @@ function updateWidget(){
     if(activeClass){
         document.getElementById("currentCourse").textContent=
         activeClass.course;
+        document.getElementById("currentCourse").style.color =
+        activeClass.color;
         document.getElementById("currentRoom").textContent=
         activeClass.room;
         document.getElementById("currentRoom").textContent=
@@ -164,6 +171,8 @@ function updateWidget(){
     }else{
         document.getElementById("currentCourse").textContent=
         "No Class";
+        document.getElementById("currentCourse").style.color =
+        "#111827";
         document.getElementById("currentTime").textContent=
         "--";
         document.getElementById("progress").style.width=
@@ -219,7 +228,9 @@ function renderTodaySchedule(){
             ? "active"
             : "";
         container.innerHTML += `
-            <div class="today-class ${active}">
+            <div class="today-class ${active}"
+            style="border-left:6px solid ${c.color};"
+            >
                 <div>
                     <strong>${c.course}</strong>
                     <br>
