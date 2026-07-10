@@ -243,6 +243,22 @@ function renderTodaySchedule(){
         `;
     });
 }
+const themeButton=document.getElementById("themeToggle");
+const savedTheme=localStorage.getItem("theme");
+if(savedTheme==="dark"){
+    document.body.classList.add("dark");
+    themeButton.textContent="☀️";
+}
+themeButton.onclick=()=>{
+    document.body.classList.toggle("dark");
+    if(document.body.classList.contains("dark")){
+        themeButton.textContent="☀️";
+        localStorage.setItem("theme","dark");
+    }else{
+        themeButton.textContent="🌙";
+        localStorage.setItem("theme","light");
+    }
+};
 renderDays();
 renderTodaySchedule();
 updateWidget();

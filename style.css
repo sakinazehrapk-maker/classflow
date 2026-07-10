@@ -1,4 +1,10 @@
 *{
+    transition:
+        background .3s,
+        color .3s,
+        border-color .3s;
+}
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -15,11 +21,28 @@ body {
     background: var(--background);
     color: var(--text);
 }
-header {
-    background: var(--primary);
-    color: white;
-    text-align: center;
-    padding: 25px;
+header{
+    background:#2563eb;
+    color:white;
+    padding:20px 40px;
+}
+.header-content{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+#themeToggle{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    font-size:22px;
+    cursor:pointer;
+    background:white;
+    transition:.3s;
+}
+#themeToggle:hover{
+    transform:rotate(20deg) scale(1.1);
 }
 main {
     display: flex;
@@ -173,12 +196,13 @@ button:hover {
     background:#dc2626;
 }
 .progress-bar{
-    width:100%;
     height:12px;
-    background:#ddd;
+    background:#d1d5db;
     border-radius:20px;
     overflow:hidden;
-    margin:15px 0;
+}
+body.dark .progress-bar{
+    background:#475569;
 }
 #progress{
     width:0%;
@@ -269,4 +293,51 @@ button:hover {
 .time{
     font-weight:bold;
     color:#2563eb;
+}
+body.dark{
+    background:#0f172a;
+    color:white;
+}
+body.dark .timetable,
+body.dark .today-panel,
+body.dark .widget,
+body.dark .modal-content,
+body.dark .day-column{
+    background:#1e293b;
+    color:white;
+}
+body.dark .day-body{
+    background:
+    repeating-linear-gradient(
+        to bottom,
+        #1e293b 0px,
+        #1e293b 79px,
+        #334155 80px
+    );
+}
+body.dark input,
+body.dark select{
+    background:#334155;
+    color:white;
+    border:1px solid #475569;
+}
+body.dark .today-class{
+    background:#334155;
+}
+body.dark .time-slot{
+    color:#cbd5e1;
+}
+body.dark hr{
+    border-color:#475569;
+}
+body.dark .class-card{
+    box-shadow:0 10px 25px rgba(0,0,0,.45);
+}
+.class-card{
+    transition:
+        transform .2s,
+        box-shadow .2s;
+}
+.class-card:hover{
+    transform:translateY(-3px);
 }
