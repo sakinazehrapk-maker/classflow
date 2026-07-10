@@ -46,6 +46,10 @@
             type="text"
             id="course"
             placeholder="Course Name">
+        <input
+            type="text"
+            id="room"
+            placeholder="Room Number">
         <select id="day">
             <option>Monday</option>
             <option>Tuesday</option>
@@ -53,18 +57,20 @@
             <option>Thursday</option>
             <option>Friday</option>
         </select>
-        <input type="time" id="start">
-        <input type="time" id="end">
-        <input
-            type="text"
-            id="room"
-            placeholder="Room">
+        <div class="time-row">
+            <input
+                type="time"
+                id="start">
+            <input
+                type="time"
+                id="end">
+        </div>
         <div class="buttons">
-            <button id="saveClass">
-                Save
-            </button>
             <button id="closeModal">
                 Cancel
+            </button>
+            <button id="saveClass">
+                Save Class
             </button>
         </div>
     </div>
