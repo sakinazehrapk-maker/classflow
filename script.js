@@ -40,6 +40,7 @@ function renderDays(){
         `;
     });
     renderClasses();
+    renderTodaySchedule();
 }
 function timeToMinutes(time){
     const [hour, minute] = time.split(":").map(Number);
@@ -82,6 +83,7 @@ function deleteClass(index){
     classes.splice(index, 1);
     localStorage.setItem("classes", JSON.stringify(classes));
     renderDays();
+    renderTodaySchedule();
 }
 document.getElementById("saveClass").onclick = () => {
     const course = document.getElementById("course").value;
@@ -107,6 +109,7 @@ document.getElementById("saveClass").onclick = () => {
     document.getElementById("end").value ="";
     document.getElementById("room").value="";
     renderDays();
+    renderTodaySchedule();
 };
 function updateWidget(){
     const now=new Date();
@@ -187,7 +190,50 @@ function updateClock(){
             minute:"2-digit"
         });
 }
+function renderTodaySchedule(){
+    const container=document.getElementById("todayClasses");
+    container.innerHTML="";
+    const today=new Date().toLocaleDateString(
+        "en-US",
+        { weekday:"long" }
+    );
+    const now=
+        new Date().getHours()*60 +
+        new Date().getMinutes();
+    const todaysClasses=classes
+        .filter(c => c.day===today)
+        .sort((a,b)=>
+            timeToMinutes(a.start)-timeToMinutes(b.start)
+        );
+    if(todaysClasses.length===0){
+        container.innerHTML = `
+            <p>No classes today</p>
+        `;
+        return;
+    }
+    todaysClasses.forEach(c=>{
+        const start=timeToMinutes(c.start);
+        const end=timeToMinutes(c.end);
+        const active =
+            now>=start && now<end
+            ? "active"
+            : "";
+        container.innerHTML += `
+            <div class="today-class ${active}">
+                <div>
+                    <strong>${c.course}</strong>
+                    <br>
+                    <small>${c.room}</small>
+                </div>
+                <div class="time">
+                    ${c.start} - ${c.end}
+                </div>
+            </div>
+        `;
+    });
+}
 renderDays();
+renderTodaySchedule();
 updateWidget();
 setInterval(updateWidget,60000);
 updateClock();
