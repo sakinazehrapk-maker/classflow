@@ -138,6 +138,10 @@ function updateWidget(){
     if(activeClass){
         document.getElementById("currentCourse").textContent=
         activeClass.course;
+        document.getElementById("currentRoom").textContent=
+        activeClass.room;
+        document.getElementById("currentRoom").textContent=
+        "Enjoy your break";
         document.getElementById("currentTime").textContent=
         `${activeClass.start} - ${activeClass.end}`;
         const total=
@@ -164,12 +168,27 @@ function updateWidget(){
         document.getElementById("timeRemaining").textContent=
         "Time Left: --";
     }
+    if(nextClass){
     document.getElementById("nextClass").textContent=
-    nextClass ?
-    `${nextClass.course} (${nextClass.start})`
-    :
+    nextClass.course;
+    document.getElementById("nextTime").textContent=
+    `${nextClass.start} • ${nextClass.room}`;
+}else{
+    document.getElementById("nextClass").textContent=
     "No more classes today";
+    document.getElementById("nextTime").textContent="";
+}
+}
+function updateClock(){
+    const now=new Date();
+    document.getElementById("liveTime").textContent=
+        now.toLocaleTimeString([],{
+            hour:"2-digit",
+            minute:"2-digit"
+        });
 }
 renderDays();
 updateWidget();
 setInterval(updateWidget,60000);
+updateClock();
+setInterval(updateClock,1000);

@@ -50,13 +50,36 @@ button:hover {
 }
 .widget {
     position: fixed;
-    right: 30px;
-    bottom: 30px;
-    width: 260px;
-    background: var(--card);
+    right:25px;
+    bottom:25px;
+    width: 300px;
+    background:white;
     padding: 20px;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
+    border-radius: 18px;
+    box-shadow:0 15px 35px rgba(0,0,0,.15)
+}
+.widget-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+#liveTime{
+    font-size:14px;
+    color:#666;
+}
+#currentCourse{
+    margin-bottom:8px;
+}
+#currentRoom{
+    color:#666;
+    margin-bottom:8px;
+}
+.next-class{
+    margin-top:10px;
+}
+.next-class small{
+    color:#888;
 }
 .widget h3 {
     margin-bottom: 15px;

@@ -23,8 +23,12 @@
         </div>
         </section>
         <aside class="widget">
+    <div class="widget-header"></div>
     <h3>Current Class</h3>
+    <span id="liveTime"></span>
+    </div>
     <h2 id="currentCourse">No Class</h2>
+    <p id="currentRoom">--</p>
     <p id="currentTime">--</p>
     <div class="progress-bar">
         <div id="progress"></div>
@@ -33,10 +37,11 @@
         Time Left: --
     </p>
     <hr>
-    <p>
-        Next:
-        <span id="nextClass">--</span>
-    </p>
+    <div class="next-class">
+        <small>Next Class</small>
+        <h4 id="nextClass">--</h4>
+        <p id="nextTime"></p>
+    </div>
 </aside>
     </main>
     <div class="modal" id="modal">
