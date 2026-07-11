@@ -78,19 +78,6 @@ function renderClasses(){
         <p>🕒 ${currentClass.start} - ${currentClass.end}</p>
         <p>📍 ${currentClass.room}</p>
     </div>
-    <div class="attendance">
-        <span>
-            ${getAttendancePercentage(currentClass)}%
-        </span>
-        <div class="attendance-buttons">
-            <button onclick="markPresent(${currentClass.id})">
-                ✅
-            </button>
-            <button onclick="markAbsent(${currentClass.id})">
-                ❌
-            </button>
-        </div>
-    </div>
 </div>
 `;
     });
@@ -311,6 +298,55 @@ function markAbsent(id){
     renderTodaySchedule();
     updateWidget();
 }
+const timetablePage=
+document.getElementById("timetablePage");
+const attendancePage=
+document.getElementById("attendancePage");
+document.getElementById("showTimetable").onclick=()=>{
+    timetablePage.classList.remove("hidden");
+    attendancePage.classList.add("hidden");
+};
+document.getElementById("showAttendance").onclick=()=>{
+    attendancePage.classList.remove("hidden");
+    timetablePage.classList.add("hidden");
+    renderAttendance();
+};
+function renderAttendance(){
+    const container=
+    document.getElementById("attendanceContainer");
+    container.innerHTML="";
+    classes.forEach(subject=>{
+        const percentage=
+        getAttendancePercentage(subject);
+        container.innerHTML+= `
+        <div class="attendance-card">
+            <h3>${subject.course}</h3>
+            <p>${subject.day}</p>
+            <p>
+                Present:
+                ${subject.present}
+            </p>
+            <p>
+                Absent:
+                ${subject.absent}
+            </p>
+            <h2>
+                ${percentage}%
+            </h2>
+            <div class="attendance-actions">
+                <button
+                onclick="markPresent(${subject.id})">
+                    ✅ Present
+                </button>
+                <button
+                onclick="markAbsent(${subject.id})">
+                    ❌ Absent
+                </button>
+            </div>
+        </div>
+        `;
+    });
+}
 renderDays();
 renderTodaySchedule();
 updateWidget();
@@ -318,4 +354,3 @@ setInterval(updateWidget,1000);
 updateClock();
 setInterval(updateClock,1000);
 updateGreeting();
-                           

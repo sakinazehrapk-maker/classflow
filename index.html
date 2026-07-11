@@ -12,12 +12,21 @@
         <div>
             <h1>ClassFlow</h1>
             <p>Your Class Companion</p>
+            <div id="greeting"></div>
         </div>
         <button id="themeToggle">🌙</button>
     </div>
-    <div id="greeting"></div>
+    <nav>
+    <button id="showTimetable">
+        📅 Timetable
+    </button>
+    <button id="showAttendance">
+        ✅ Attendance
+    </button>
+</nav>
 </header>
     <main>
+        <section id="timetablePage" class="page">
         <section class="timetable">
             <div class="toolbar">
                 <button id="openModal">+ Add Class</button>
@@ -52,7 +61,12 @@
         <h4 id="nextClass">--</h4>
         <p id="nextTime"></p>
     </div>
-</aside>
+    </aside>
+</section>
+<section id="attendancePage" class="page hidden">
+    <h2>Attendance Tracker</h2>
+    <div id="attendanceContainer"></div>
+</section>
     </main>
     <div class="modal" id="modal">
     <div class="modal-content">

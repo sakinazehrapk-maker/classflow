@@ -1,13 +1,11 @@
 *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
     transition:
         background .3s,
         color .3s,
         border-color .3s;
-}
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 :root {
     --primary: #2563eb;
@@ -53,8 +51,6 @@ header{
     transform:rotate(20deg) scale(1.1);
 }
 main {
-    display: flex;
-    gap: 30px;
     padding: 30px;
 }
 .timetable {
@@ -83,7 +79,7 @@ button:hover {
     position: fixed;
     right:25px;
     bottom:25px;
-    width: 300px;
+    width: 320px;
     background:rgba(255,255,255,.75);
     backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,.3);
@@ -395,4 +391,66 @@ body.dark .class-card{
     margin-top:10px;
     border-top:1px solid rgba(255,255,255,.3);
     padding-top:8px;
+}
+nav{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+nav button{
+    background:rgba(255,255,255,.2);
+    backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.2);
+}
+nav button:hover{
+    transform:translateY(-2px);
+}
+.page{
+    display:block;
+}
+.hidden{
+    display:none;
+}
+.hidden{
+    display:none !important;
+}
+.attendance-card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+.attendance-actions{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+.attendance-actions button{
+    flex:1;
+}
+#attendanceContainer{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+    margin-top:20px;
+}
+body.dark .attendance-card{
+    background:#1e293b;
+    color:white;
+}
+.attendance-card h2{
+    font-size:42px;
+    margin:15px 0;
+    color:#22c55e;
+}
+.safe{
+    color:#22c55e;
+}
+.warning{
+    color:#f59e0b;
+}
+.danger{
+    color:#ef4444;
 }
