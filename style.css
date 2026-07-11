@@ -17,8 +17,16 @@
     --shadow: 0 10px 25px rgba(0,0,0,.1);
 }
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--background);
+    font-family:Arial,Helvetica,sans-serif;
+    background:
+    linear-gradient(
+        135deg,
+        #dbeafe,
+        #f8fafc,
+        #ede9fe
+    );
+
+    min-height:100vh;
     color: var(--text);
 }
 header{
@@ -76,7 +84,9 @@ button:hover {
     right:25px;
     bottom:25px;
     width: 300px;
-    background:white;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.3);
     padding: 20px;
     border-radius: 18px;
     box-shadow:0 15px 35px rgba(0,0,0,.15)
@@ -222,7 +232,9 @@ body.dark .progress-bar{
 }
 .modal-content{
     width:420px;
-    background:white;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.3);
     border-radius:20px;
     padding:30px;
     box-shadow:0 20px 50px rgba(0,0,0,.25);
@@ -268,7 +280,9 @@ body.dark .progress-bar{
     flex:1;
 }
 .today-panel{
-    background:white;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.3);
     border-radius:15px;
     padding:20px;
     margin-bottom:25px;
@@ -295,7 +309,13 @@ body.dark .progress-bar{
     color:#2563eb;
 }
 body.dark{
-    background:#0f172a;
+    background:
+    linear-gradient(
+        135deg,
+        #020617,
+        #0f172a,
+        #1e293b
+    );
     color:white;
 }
 body.dark .timetable,
