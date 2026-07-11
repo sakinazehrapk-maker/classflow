@@ -61,34 +61,36 @@ function renderClasses(){
             currentClass.end
         );
         dayColumn.innerHTML += `
-        <div
-        class="class-card"
-        style="
+<div
+    class="class-card"
+    style="
         top:${top}px;
         height:${height}px;
         background:${currentClass.color};
-        ">
-        <h4>${currentClass.course}</h4>
-        <p>${currentClass.start} - ${currentClass.end}</p>
-        <p>${currentClass.room}</p>
-        <hr>
-        <p>
-        Attendance
-        ${getAttendancePercentage(currentClass)}%
-        </p>
-        <div class="attendance-buttons">
-        <button onclick="markPresent(${currentClass.id})">
-        ✅
-        </button>
-        <button onclick="markAbsent(${currentClass.id})">
-        ❌
-        </button>
-    <button class="delete-btn" onclick="deleteClass(${classes.indexOf(currentClass)})">
+    ">
+    <button
+        class="delete-btn"
+        onclick="deleteClass(${classes.indexOf(currentClass)})">
         ✕
     </button>
-    <h4>${currentClass.course}</h4>
-    <p>${currentClass.start} - ${currentClass.end}</p>
-    <p>${currentClass.room}</p>
+    <div class="class-info">
+        <h4>${currentClass.course}</h4>
+        <p>🕒 ${currentClass.start} - ${currentClass.end}</p>
+        <p>📍 ${currentClass.room}</p>
+    </div>
+    <div class="attendance">
+        <span>
+            ${getAttendancePercentage(currentClass)}%
+        </span>
+        <div class="attendance-buttons">
+            <button onclick="markPresent(${currentClass.id})">
+                ✅
+            </button>
+            <button onclick="markAbsent(${currentClass.id})">
+                ❌
+            </button>
+        </div>
+    </div>
 </div>
 `;
     });
@@ -316,3 +318,4 @@ setInterval(updateWidget,1000);
 updateClock();
 setInterval(updateClock,1000);
 updateGreeting();
+                           
