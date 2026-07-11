@@ -1,4 +1,3 @@
-const timetableGrid = document.getElementById("timetableGrid");
 const days = [
     "Monday",
     "Tuesday",
@@ -62,14 +61,28 @@ function renderClasses(){
             currentClass.end
         );
         dayColumn.innerHTML += `
-<div
-    class="class-card"
-    style="
+        <div
+        class="class-card"
+        style="
         top:${top}px;
         height:${height}px;
         background:${currentClass.color};
-    "
->
+        ">
+        <h4>${currentClass.course}</h4>
+        <p>${currentClass.start} - ${currentClass.end}</p>
+        <p>${currentClass.room}</p>
+        <hr>
+        <p>
+        Attendance
+        ${getAttendancePercentage(currentClass)}%
+        </p>
+        <div class="attendance-buttons">
+        <button onclick="markPresent(${currentClass.id})">
+        ✅
+        </button>
+        <button onclick="markAbsent(${currentClass.id})">
+        ❌
+        </button>
     <button class="delete-btn" onclick="deleteClass(${classes.indexOf(currentClass)})">
         ✕
     </button>
@@ -104,7 +117,9 @@ document.getElementById("saveClass").onclick = () => {
     start,
     end,
     room,
-    color
+    color,
+    present: 0,
+    absent: 0
 });
     localStorage.setItem("classes", JSON.stringify(classes));
     modal.style.display = "none";
@@ -151,7 +166,7 @@ function updateWidget(){
         document.getElementById("currentRoom").textContent=
         activeClass.room;
         document.getElementById("currentRoom").textContent=
-        "Enjoy your break";
+        activeClass.room;
         document.getElementById("currentTime").textContent=
         `${activeClass.start} - ${activeClass.end}`;
         const total=
@@ -271,10 +286,33 @@ function updateGreeting(){
     }
     document.getElementById("greeting").textContent=greeting;
 }
+function getAttendancePercentage(course){
+    const present=course.present||0;
+    const absent=course.absent||0;
+    const total=present+absent;
+    if(total===0) return 100;
+    return Math.round((present/total)*100);
+}
+function markPresent(id){
+    const subject=classes.find(c => c.id === id);
+    subject.present++;
+    localStorage.setItem("classes",JSON.stringify(classes));
+    renderDays();
+    renderTodaySchedule();
+    updateWidget();
+}
+function markAbsent(id){
+    const subject=classes.find(c => c.id === id);
+    subject.absent++;
+    localStorage.setItem("classes",JSON.stringify(classes));
+    renderDays();
+    renderTodaySchedule();
+    updateWidget();
+}
 renderDays();
 renderTodaySchedule();
 updateWidget();
-setInterval(updateWidget,60000);
+setInterval(updateWidget,1000);
 updateClock();
 setInterval(updateClock,1000);
 updateGreeting();

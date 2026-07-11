@@ -361,3 +361,13 @@ body.dark .class-card{
 .class-card:hover{
     transform:translateY(-3px);
 }
+.attendance-buttons{
+display:flex;
+gap:8px;
+margin-top:10px;
+}
+.attendance-buttons button{
+flex:1;
+padding:8px;
+font-size:18px;
+}
