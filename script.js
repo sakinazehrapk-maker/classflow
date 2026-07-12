@@ -348,6 +348,14 @@ function renderAttendance(){
         `;
     });
 }
+const assignmentsPage =
+document.getElementById("assignmentsPage");
+document.getElementById("showAssignments").onclick = () => {
+    timetablePage.classList.add("hidden");
+    attendancePage.classList.add("hidden");
+    assignmentsPage.classList.remove("hidden");
+    renderAssignments();
+};
 const assignmentModal=
 document.getElementById("assignmentModal");
 document.getElementById("openAssignmentModal").onclick=()=>{
