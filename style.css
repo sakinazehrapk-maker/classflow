@@ -8,7 +8,7 @@
         border-color .3s;
 }
 :root {
-    --primary: #2563eb;
+    --primary: #A855F7;
     --background: #f5f7fb;
     --card: #ffffff;
     --text: #1f2937;
@@ -28,7 +28,7 @@ body {
     color: var(--text);
 }
 header{
-    background:#2563eb;
+    background:#A855F7;
     color:white;
     padding:20px 40px;
 }
@@ -145,7 +145,7 @@ button:hover {
     overflow:hidden;
 }
 .day-header{
-    background:#2563eb;
+    background:#A855F7;
     color:white;
     text-align:center;
     padding:12px;
@@ -266,7 +266,7 @@ body.dark .progress-bar{
 }
 .modal-content input:focus,
 .modal-content select:focus{
-    border-color:#2563eb;
+    border-color:#A855F7;
 }
 .buttons{
     display:flex;
@@ -304,11 +304,11 @@ body.dark .progress-bar{
 }
 .today-class.active{
     background:#dbeafe;
-    border-left:5px solid #2563eb;
+    border-left:5px solid #A855F7;
 }
 .time{
     font-weight:bold;
-    color:#2563eb;
+    color:#A855F7;
 }
 body.dark{
     background:

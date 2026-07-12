@@ -431,14 +431,14 @@ function toggleAssignment(id){
     renderAssignments();
 }
 function showPage(pageId){
-    document.querySelectorAll(".page").forEach(page => {
+    document.querySelectorAll(".page").forEach(page=>{
         page.classList.add("hidden");
     });
     document.getElementById(pageId).classList.remove("hidden");
 }
-const examModal = document.getElementById("examModal");
+const examModal=document.getElementById("examModal");
 document.getElementById("openExamModal").onclick=()=>{
-    examModal.style.display = "flex";
+    examModal.style.display="flex";
     loadExamSubjects();
 };
 document.getElementById("closeExamModal").onclick=()=>{
@@ -447,7 +447,7 @@ document.getElementById("closeExamModal").onclick=()=>{
 function loadExamSubjects(){
     const select=
     document.getElementById("examSubject");
-    select.innerHTML = "";
+    select.innerHTML="";
     classes.forEach(c=>{
         select.innerHTML += `
             <option>${c.course}</option>
@@ -476,8 +476,8 @@ document.getElementById("saveExam").onclick=()=>{
         JSON.stringify(exams)
     );
     examModal.style.display="none";
-    document.getElementById("examTitle").value = "";
-    document.getElementById("examDate").value = "";
+    document.getElementById("examTitle").value="";
+    document.getElementById("examDate").value="";
     renderExams();
 };
 function renderExams(){
