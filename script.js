@@ -5,6 +5,7 @@ const days = [
     "Thursday",
     "Friday"
 ];
+let exams=JSON.parse(localStorage.getItem("exams")) || [];
 let assignments=JSON.parse(localStorage.getItem("assignments")) || [];
 let classes = JSON.parse(localStorage.getItem("classes")) || [];
 const modal = document.getElementById("modal");
@@ -429,6 +430,111 @@ function toggleAssignment(id){
     );
     renderAssignments();
 }
+function showPage(pageId){
+    document.querySelectorAll(".page").forEach(page => {
+        page.classList.add("hidden");
+    });
+    document.getElementById(pageId).classList.remove("hidden");
+}
+const examModal = document.getElementById("examModal");
+document.getElementById("openExamModal").onclick=()=>{
+    examModal.style.display = "flex";
+    loadExamSubjects();
+};
+document.getElementById("closeExamModal").onclick=()=>{
+    examModal.style.display="none";
+};
+function loadExamSubjects(){
+    const select=
+    document.getElementById("examSubject");
+    select.innerHTML = "";
+    classes.forEach(c=>{
+        select.innerHTML += `
+            <option>${c.course}</option>
+        `;
+    });
+}
+document.getElementById("saveExam").onclick=()=>{
+    const title=
+    document.getElementById("examTitle").value;
+    const subject=
+    document.getElementById("examSubject").value;
+    const date=
+    document.getElementById("examDate").value;
+    if(!title || !date){
+        alert("Please fill all fields.");
+        return;
+    }
+    exams.push({
+        id: Date.now(),
+        title,
+        subject,
+        date
+    });
+    localStorage.setItem(
+        "exams",
+        JSON.stringify(exams)
+    );
+    examModal.style.display="none";
+    document.getElementById("examTitle").value = "";
+    document.getElementById("examDate").value = "";
+    renderExams();
+};
+function renderExams(){
+    const container=
+    document.getElementById("examContainer");
+    container.innerHTML="";
+    exams.sort(
+        (a,b)=>
+        new Date(a.date)-new Date(b.date)
+    );
+    exams.forEach(exam=>{
+        const today=new Date();
+        const examDate=new Date(exam.date);
+        const daysLeft=Math.ceil(
+            (examDate-today)
+            /(1000*60*60*24)
+        );
+        let status="";
+        if(daysLeft < 0){
+            status="Finished";
+        }
+        else if(daysLeft===0){
+            status="Today";
+        }
+        else{
+            status=`${daysLeft} day(s) left`;
+        }
+        container.innerHTML += `
+        <div class="exam-card">
+            <h3>${exam.title}</h3>
+            <p>${exam.subject}</p>
+            <p>📅 ${exam.date}</p>
+            <h2>${status}</h2>
+            <button
+                onclick="deleteExam(${exam.id})">
+                Delete
+            </button>
+        </div>
+        `;
+    });
+}
+function deleteExam(id){
+    exams=exams.filter(
+        exam => exam.id !== id
+    );
+    localStorage.setItem(
+        "exams",
+        JSON.stringify(exams)
+    );
+    renderExams();
+}
+const examsPage=
+document.getElementById("examsPage");
+document.getElementById("showExams").onclick = ()=>{
+    showPage("examsPage");
+    renderExams();
+};
 renderDays();
 renderTodaySchedule();
 updateWidget();

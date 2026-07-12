@@ -18,14 +18,17 @@
     </div>
     <nav>
     <button id="showTimetable">
-        📅 Timetable
+        Timetable
     </button>
     <button id="showAttendance">
-        ✅ Attendance
+        Attendance
     </button>
     <button id="showAssignments">
     Assignments
     </button>
+    <button id="showExams">
+    Exams
+</button>
 </nav>
 </header>
     <main>
@@ -81,6 +84,15 @@
         No assignments yet 
     </p>
 </div>
+</section>
+<section id="examsPage" class="page hidden">
+    <div class="page-header">
+        <h2>Exam Countdown</h2>
+        <button id="openExamModal">
+            + Add Exam
+        </button>
+    </div>
+    <div id="examContainer"></div>
 </section>
     </main>
     <div class="modal" id="modal">
@@ -157,6 +169,27 @@
             </button>
             <button id="saveAssignment">
                 Save
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="examModal">
+    <div class="modal-content">
+        <h2>Add Exam</h2>
+        <input
+            type="text"
+            id="examTitle"
+            placeholder="Exam Name">
+        <select id="examSubject"></select>
+        <input
+            type="date"
+            id="examDate">
+        <div class="buttons">
+            <button id="closeExamModal">
+                Cancel
+            </button>
+            <button id="saveExam">
+                Save Exam
             </button>
         </div>
     </div>
