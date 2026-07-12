@@ -23,6 +23,9 @@
     <button id="showAttendance">
         ✅ Attendance
     </button>
+    <button id="showAssignments">
+    Assignments
+    </button>
 </nav>
 </header>
     <main>
@@ -45,7 +48,6 @@
     <div class="widget-header"></div>
     <h3>Current Class</h3>
     <span id="liveTime"></span>
-    </div>
     <h2 id="currentCourse">No Class</h2>
     <p id="currentRoom">--</p>
     <p id="currentTime">--</p>
@@ -66,6 +68,19 @@
 <section id="attendancePage" class="page hidden">
     <h2>Attendance Tracker</h2>
     <div id="attendanceContainer"></div>
+</section>
+<section id="assignmentsPage" class="page hidden">
+    <div class="page-header assignment-header"></div>
+        <h2>Assignments</h2>
+        <button id="openAssignmentModal">
+            + Add Assignment
+        </button>
+    </div>
+    <div id="assignmentContainer">
+    <p id="noAssignments">
+        No assignments yet 
+    </p>
+</div>
 </section>
     </main>
     <div class="modal" id="modal">
@@ -103,6 +118,45 @@
             </button>
             <button id="saveClass">
                 Save Class
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal" id="assignmentModal">
+    <div class="modal-content">
+        <h2>Add Assignment</h2>
+        <input
+            id="assignmentTitle"
+            type="text"
+            placeholder="Assignment Name"
+            required>
+        <select id="assignmentSubject">
+    <option disabled selected>
+        Select Subject
+    </option>
+</select>
+        <label>
+            Due Date
+        </label>
+        <input
+        id="assignmentDate"
+        type="date">
+        <select id="assignmentPriority">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+        </select>
+        <select id="assignmentStatus">
+            <option>Pending</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+        </select>
+        <div class="buttons">
+            <button id="closeAssignmentModal">
+                Cancel
+            </button>
+            <button id="saveAssignment">
+                Save
             </button>
         </div>
     </div>

@@ -5,6 +5,7 @@ const days = [
     "Thursday",
     "Friday"
 ];
+let assignments=JSON.parse(localStorage.getItem("assignments")) || [];
 let classes = JSON.parse(localStorage.getItem("classes")) || [];
 const modal = document.getElementById("modal");
 document.getElementById("openModal").onclick = () => {
@@ -346,6 +347,79 @@ function renderAttendance(){
         </div>
         `;
     });
+}
+const assignmentModal=
+document.getElementById("assignmentModal");
+document.getElementById("openAssignmentModal").onclick=()=>{
+    assignmentModal.style.display = "flex";
+    loadSubjects();
+};
+document.getElementById("closeAssignmentModal").onclick=()=>{
+    assignmentModal.style.display="none";
+};
+function loadSubjects(){
+    const select=
+    document.getElementById("assignmentSubject");
+    select.innerHTML="";
+    classes.forEach(c=>{
+        select.innerHTML +=
+        `<option>${c.course}</option>`;
+    });
+}
+document.getElementById("saveAssignment").onclick=()=>{
+    assignments.push({
+        id:Date.now(),
+        title:
+        document.getElementById("assignmentTitle").value,
+        subject:
+        document.getElementById("assignmentSubject").value,
+        due:
+        document.getElementById("assignmentDate").value,
+        priority:
+        document.getElementById("assignmentPriority").value,
+        completed:false
+    });
+    localStorage.setItem(
+        "assignments",
+        JSON.stringify(assignments)
+    );
+    assignmentModal.style.display="none";
+    renderAssignments();
+};
+function renderAssignments(){
+    const container=
+    document.getElementById("assignmentContainer");
+    container.innerHTML="";
+    assignments
+        .sort((a,b)=>new Date(a.due)-new Date(b.due))
+        .forEach(a=>{
+        container.innerHTML += `
+        <div class="assignment-card">
+            <h3>${a.title}</h3>
+            <p>${a.subject}</p>
+            <p>📅 ${a.due}</p>
+            <p>${a.priority}</p>
+            <button
+            onclick="toggleAssignment(${a.id})">
+            ${a.completed
+                ? "Completed"
+                : "✔ Mark Complete"}
+            </button>
+        </div>
+        `;
+    });
+}
+function toggleAssignment(id){
+    const assignment=
+    assignments.find(a=>a.id===id);
+    if(!assignment) return;
+    assignment.completed =
+    !assignment.completed;
+    localStorage.setItem(
+        "assignments",
+        JSON.stringify(assignments)
+    );
+    renderAssignments();
 }
 renderDays();
 renderTodaySchedule();
