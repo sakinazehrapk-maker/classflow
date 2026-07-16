@@ -6,6 +6,7 @@
 ## Features
 
 ### Weekly Timetable
+<img width="1336" height="610" alt="image" src="https://github.com/user-attachments/assets/889f6ac2-9894-4263-b1b3-b462a1a78b9a" />
 
 * Create and manage your weekly class schedule
 * Color-code subjects
@@ -29,12 +30,16 @@ A floating widget that displays:
 * Highlights the currently active class
 
 ### Attendance Tracker
+<img width="1365" height="690" alt="image" src="https://github.com/user-attachments/assets/7d14087e-ad3f-47e3-a9e6-9dc32ee3479a" />
+
 
 * Track attendance for every subject
 * Mark classes as Present or Absent
 * Automatic attendance percentage calculation
 
 ### Assignment Manager
+<img width="1366" height="611" alt="image" src="https://github.com/user-attachments/assets/b522f185-91b4-4cd9-8aa5-abbaea90d3a3" />
+
 
 * Add assignments by subject
 * Set due dates
@@ -43,11 +48,15 @@ A floating widget that displays:
 * Data saved locally
 
 ### Exam Countdown
+<img width="1364" height="672" alt="image" src="https://github.com/user-attachments/assets/7dc176ac-961c-4584-bf94-f3d83ddc9372" />
+
 
 * Add upcoming exams
 * Countdown in days until each exam
 
 ### Dark Mode
+<img width="1366" height="627" alt="image" src="https://github.com/user-attachments/assets/11a8b667-98f0-4412-8091-66b3637d2269" />
+
 
 * One-click light/dark mode toggle
 
