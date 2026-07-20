@@ -14,6 +14,8 @@
 * Delete classes anytime
 
 ### Live Class Widget
+<img width="1354" height="594" alt="image" src="https://github.com/user-attachments/assets/bd20e44b-afae-4051-b90e-14b5fcc476e4" />
+
 
 A floating widget that displays:
 
@@ -25,6 +27,8 @@ A floating widget that displays:
 * Live clock
 
 ### Today's Schedule
+<img width="1348" height="592" alt="image" src="https://github.com/user-attachments/assets/cdba2586-0ac3-4cda-894c-8aca7b0cafd4" />
+
 
 * Automatically displays today's classes
 * Highlights the currently active class
